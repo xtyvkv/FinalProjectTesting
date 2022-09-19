@@ -1,0 +1,85 @@
+<!--<div class="container">
+  <div class="row">
+    <h1>Here is the hand you have been dealt.</h1>
+  </div>
+  <div class="row gifs">
+    <div class="col-sm gif" *ngFor="let gif of gifs">
+      <img [src]="gif.images.original.url" class="blankCard" alt="Image" />-->
+<!-- figure out how to start a new row after n amount of columns -->
+<!--</div>
+  </div>
+</div>-->
+
+<div class="container">
+  <!-- think of this like card table, where you play your card
+      before card is chosen, have blank placeholder prompting to choose card -->
+  <div class="row playArea">
+    <div class="col">
+      <!--<div class="promptCard">
+        <p>When your blind date shows up wearing a Fedora...</p>
+      </div>-->
+      <div class="promptCard bigCard">
+        <p>When your blind date shows up wearing a Fedora...</p>
+      </div>
+      <div class="winDetails">
+        <p>Queen_Amanda wins!</p>
+      </div>
+    </div>
+    <div class="col cardPlaceholder">
+      <div class="playedCard" *ngFor="let gif of chosenGif">
+        <img [src]="gif.images.original.url" alt="Image" />
+      </div>
+    </div>
+  </div>
+  <div class="container fixed-bottom clearPlayersBox">
+    <!-- in player's own view, push this to the bottom, above the playerBox -->
+    <div class="row handHeader">
+      <div class="col">
+        <p>
+          Your Hand
+          <button class="soundTestButton" (click)="playBonkSound()">Play Bonk Sound</button>
+          <button class="soundTestButton" (click)="playChompSound()">Play Chomp Sound</button>
+        </p>
+      </div>
+    </div>
+    <div class="row gifs hand">
+      <div class="col-sm gif flip-card" *ngFor="let gif of gifs">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img [src]="gif.images.original.url" alt="Image" />
+          </div>
+          <div class="flip-card-back">
+            <img src="../../assets/img/logo-white.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- turn into its own component -->
+    <nav class="navbar fixed-bottom playersBox">
+      <ul class="nav">
+        <li class="nav-item count">(4/5)</li>
+        <li class="nav-item">KaigeMiller3000 (2) /</li>
+        <li class="nav-item lead"><img src="assets/img/crown-white.png" class="playerStatusIcon" />  JOHN T-GAGE SMITH (3) /</li>
+        <li class="nav-item judge"><img src="assets/img/judge-white.png" class="playerStatusIcon" /> christyThaG0blin (0) /</li>
+        <li class="nav-item">Queen_Amanda (1) /</li>
+      </ul>
+      <ul class="nav">
+        <li class="nav-item navIcon">
+          <img src="assets/img/pause-white.png" />
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</div>
+  <!--<div class="playersBox">
+    <ul>
+      <li class="count">Players (3/4)</li>
+      <li class="lead">Player 1 (3)</li>
+      <li class="judge">Player 2 (2)</li>
+      <li>Player 3 (0)</li>
+    </ul>
+  </div>-->
+
+

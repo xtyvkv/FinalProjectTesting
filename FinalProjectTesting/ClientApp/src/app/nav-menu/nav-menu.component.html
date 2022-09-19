@@ -1,0 +1,64 @@
+<!--<header>
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+  >
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">FinalProjectTesting</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+        [ngClass]="{ show: isExpanded }"
+      >
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/fetch-data']">Fetch data</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/new-game']">New Game</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/gifcarddisplay']">Gif Card Display</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>-->
+
+<div class="header">
+  <div class="headerLogo">
+    <img src="../../assets/img/logo-black.png" align="left" />
+  </div>
+  <div class="headerText">
+    <b>Angular Assassins</b><br />
+    <span class="headerSubText">Round 1 - </span><span class="headerStatus">Judging...</span>
+  </div>
+  <div class="headerMenu">
+    <button type="button" class="headerButton" [routerLink]="['/']">Home</button>
+    <button type="button" class="headerButton" [routerLink]="['/new-game']">New Game</button>
+    <button type="button" class="headerButton" [routerLink]="['/gifcarddisplay']">Test</button>
+    <button type="button" class="headerButton" (click)="toggleShow()">Pause</button>
+  </div>
+</div>
+
+<div *ngIf="isShown" class="row container-fluid paused" id="divshow">
+  <p>Paused...<br /> <button (click)="toggleShow()">Resume</button> </p>
+</div>

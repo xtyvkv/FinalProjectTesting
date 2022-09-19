@@ -1,0 +1,438 @@
+/* Google Fonts Imports */
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Yeseva+One&display=swap');
+
+/*
+/ --- Style Organization Outline (In Progress)
+
+/// 1. Base
+    Reset and default element styles.
+    It can also have base styles for controls such as buttons,
+    grids etc which can be overwritten later in the document
+    under specific circumstances.
+
+/// 2. Layout
+    Navigation, breadcrumbs, sitemaps etc etc.
+
+/// 3. Modules
+    Area specific styles such as contact form styles,
+    homepage tiles, product listing etc etc etc.
+
+/// 4. State
+    State classes such as isSelected, isActive, hasError,
+    wasSuccessful etc etc.
+
+/// 5. Theme
+    Any styles that are related to theming.
+
+/ --- End Style Organization Outline
+*/
+
+
+body {
+  background-color: #dfdfdf;
+  font-family: Consolas;
+}
+
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Styling for Gif Cards */
+.container {
+  margin-top: 50px;
+}
+
+/* hand */
+
+.hand {
+  padding: 20px 10px;
+  background-color: #d4d4d4;
+  border-radius: 10px;
+}
+
+  .handHeader {
+    font-size: 20pt;
+    font-family: Consolas;
+    font-weight: bold;
+    padding: 10px 10px;
+    /*background-color: rgba(0,0,0,0.05);*/
+    height: 50px;
+  }
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 224px;
+  height: 149px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+  .flip-card img {
+    width: 100%;
+    height: 100%;
+    /* stop it from stretching! */
+  }
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+}
+
+/* Style the back side */
+.flip-card-back {
+  display: flex;
+  justify-content: center;
+  background-color: #262626;
+  color: white;
+  transform: rotateY(180deg);
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+  .flip-card-back img {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+  }
+
+/* Chosen card revealed */
+.highlightedCard {
+  width: 700px;
+  height: 400px;
+  margin-bottom: 20px;
+}
+
+  .highlightedCard img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+
+/* Winner text */
+.winner {
+  transform: rotate(-10deg);
+  margin-left: -180px;
+  margin-top: 100px;
+  color: #e867ff;
+  font-size: 60pt;
+  font-weight: bold;
+  position: relative;
+  width: 200px;
+  height: 100px;
+}
+
+/* players box */
+.playersBox {
+  font-family: Consolas;
+  background-color: #262626;
+  color: #fff;
+  padding: 0;
+}
+
+  .playersBox .nav-item {
+    font-size: 16px;
+    display: block;
+    padding: 0.5rem 1rem;
+  }
+
+.count {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.5);
+  background-color: #262626;
+}
+
+/* move this */
+.playArea .col {
+    /*border: 1px solid blue;*/
+}
+
+.clearPlayersBox {
+    bottom: 50px;
+}
+
+.lead {
+  /*list-style-image: url('assets/img/crown.svg');*/
+}
+
+.judge {
+/*  font-weight: bold;*/
+  color: #e867ff;
+}
+
+.playerStatusIcon {
+  width: 12px;
+}
+
+.navIcon img{
+    height: 14px;
+}
+
+/*header*/
+.header {
+  height: 80px;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+  .header img {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+  }
+
+.headerText {
+  font-family: consolas;
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 20pt;
+  line-height: 28px;
+}
+
+.headerSubText {
+  font-size: 16pt;
+}
+
+.headerStatus {
+  font-size: 16pt;
+  font-style: italic;
+  color: #e867ff;
+}
+
+.headerMenu {
+  float: right;
+  margin-right: 30px;
+  margin-top: 5px;
+}
+
+.headerButton {
+  border-radius: 5px;
+  background-color: #e867ff;
+  color: #ffffff;
+  border: 0px;
+  padding: 5px 10px;
+  margin-left: 5px;
+}
+
+.soundTestButton {
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #000;
+  text-decoration: underline;
+  border: 0px;
+  padding: 5px 10px;
+  margin-left: 5px;
+}
+
+  .headerButton:hover, .headerButton:focus, .headerButton:active {
+    background-color: #ef95ff;
+  }
+
+  /* New Game Page Style */
+
+  .newGamePage .col {
+      /*border: 1px solid green*/;
+      text-align: center;
+  }
+
+.newGamePage button {
+  border-radius: 5px;
+  background-color: #8a3d98;
+  color: #ffffff;
+  border: 0px;
+  padding: 5px;
+  display: block;
+  margin: auto;
+  width: 150px;
+  margin-bottom: 5px;
+}
+
+  .newGamePage button:hover, .newGamePage button:focus, .newGamePage button:active {
+    background-color: #ad6eb8;
+  }
+
+.newGamePage .hilite {
+  background-color: #e867ff;
+}
+
+  .newGamePage .hilite:hover, .newGamePage .hilite:focus, .newGamePage .hilite:active {
+    background-color: #ef95ff;
+  }
+
+.newGamePage h1 {
+    font-size: 48pt;
+    font-family: Yeseva One;
+    margin-bottom: 30px;
+}
+
+.newGameForm button {
+  border-radius: 5px;
+  background-color: #e867ff;
+  color: #ffffff;
+  border: 0px;
+  padding: 5px;
+  margin: auto;
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+  .newGameForm button:hover {
+    background-color: #ef95ff;
+  }
+
+.newGameForm .form-group {
+    margin-bottom: 5px;
+}
+
+/* universal form styling */
+/* make buttons pretty after you click them */
+
+.form-check-input:checked {
+  background-color: #4d42e3;
+  border-color: #4d42e3;
+}
+
+/* draggable card testing */
+#mydiv {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+}
+
+#mydivheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}
+
+/* prompt card */
+
+.promptCard {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 350px;
+  height: 200px;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: -2px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+.promptCard p {
+    font-family: Yeseva One;
+    font-size: 24pt;
+    line-height: 28pt;
+    font-weight: bold;
+}
+
+
+.bigCard {
+  width: 98%;
+  height: auto;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bigCard p {
+    font-size: 60px;
+    line-height: 60px;
+}
+
+.cardPlaceholder {
+  background-color: #d4d4d4;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.playedCard {
+  /*border: 1px solid pink;*/
+  width: 100%;
+  height: 350px;
+  /*height: 400px;*/
+}
+
+  .playedCard img {
+    width: 100%;
+    float: right;
+    height: 100%;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+
+  /* cool pausing thing */
+.paused {
+  opacity: 0.5;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  position: fixed;
+  color: #ffffff;
+  font-size: 48pt;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 100px;
+  vertical-align: middle;
+}
+
+.paused button {
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 10px;
+    font-size: 30pt;
+    border: 0px;
+}
+
+.winDetails {
+  font-weight: bold;
+  font-size: 24pt;
+  color: #e867ff;
+}
