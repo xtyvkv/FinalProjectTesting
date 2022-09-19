@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel.DataAnnotations;
+
+
 namespace FinalProjectTesting
 {
     public class Program
@@ -8,8 +13,9 @@ namespace FinalProjectTesting
 
             // Add services to the container.
 
-            builder.Services.AddControllersWithViews();
-
+            // builder.Services.AddControllersWithViews();
+            var startup = new Startup(builder.Configuration);
+            startup.ConfigureServices(builder.Services);
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -33,4 +39,49 @@ namespace FinalProjectTesting
             app.Run();
         }
     }
+    public class Startup
+    {
+        public Startup(IConfigurationRoot configuration)
+        {
+            Configuration = configuration;
+        }
+        public IConfigurationRoot Configuration { get; }
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllersWithViews();
+            services.AddDbContext<CardGameContext>(options =>
+                            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        }
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseRouting();
+            app.UseEndpoints(x => x.MapControllers());
+        }
+    }
+
+    public class CardGameContext : DbContext
+    {
+        public CardGameContext(DbContextOptions<CardGameContext> options) : base(options)
+        {
+            // Nothing needed
+        }
+
+        public DbSet<GifCard> Company { get; set; }
+        public DbSet<PromptCard> Employee { get; set; }
+    }
+
+    public class GifCard
+    {
+        public int ID { get; set; }
+        public string category { get; set; }
+        public string gif { get; set; }
+    }
+
+    public class PromptCard
+    {
+        public int ID { get; set; }
+        public string promptSentence { get; set; }
+    }
+
+
 }

@@ -11,17 +11,17 @@
         }
 
     }
-    public class GifCard
-    {
-        public int ID { get; set; }
-        public string category { get; set; }
-        public string gif { get; set; }
-    }
-    public class PromptCard
-    {
-        public int ID { get; set; }
-        public string promptSentence { get; set; }
-    }
+    //public class GifCard
+    //{
+    //    public int ID { get; set; }
+    //    public string category { get; set; }
+    //    public string gif { get; set; }
+    //}
+    //public class PromptCard
+    //{
+    //    public int ID { get; set; }
+    //    public string promptSentence { get; set; }
+    //}
 
     public class Game
     {
