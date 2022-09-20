@@ -28,7 +28,7 @@ namespace FinalProjectTesting
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
+            app.MapControllers();
 
             app.MapControllerRoute(
                 name: "default",
@@ -66,12 +66,13 @@ namespace FinalProjectTesting
             // Nothing needed
         }
 
-        public DbSet<GifCard> Company { get; set; }
-        public DbSet<PromptCard> Employee { get; set; }
+        public DbSet<GifCard> GifCard { get; set; }
+        public DbSet<PromptCard> PromptCard { get; set; }
     }
 
     public class GifCard
     {
+        [Key]
         public int ID { get; set; }
         public string category { get; set; }
         public string gif { get; set; }
@@ -79,6 +80,7 @@ namespace FinalProjectTesting
 
     public class PromptCard
     {
+        [Key]
         public int ID { get; set; }
         public string promptSentence { get; set; }
     }
