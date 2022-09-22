@@ -13,18 +13,34 @@ namespace FinalProjectTesting.Controllers
     {
         private CardGameContext _cardGameContext;
         private readonly ILogger<GameController> _logger;
+        public PromptCard[] promptDB;
         public GameController(ILogger<GameController> logger, CardGameContext cardGameContext)
         {
             _logger = logger;
             _cardGameContext = cardGameContext;
         }
         
-        [Route("Test")]
+        [Route("AllPrompts")]
         [HttpGet]
-        public PromptCard[] Test()
+        public PromptCard[] AllPrompts()
         {
-            var PromptCard = _cardGameContext.PromptCard.ToArray();
-            return PromptCard;
+            promptDB = _cardGameContext.PromptCard.ToArray();
+            return promptDB;
+        }
+        [Route("SeeSpecificPrompt")]
+        [HttpGet]
+        public PromptCard SeeSpecificPrompt(int ID)
+        {
+            promptDB = _cardGameContext.PromptCard.ToArray();
+            var promptToShow = new PromptCard();
+            foreach(var currPrompt in promptDB)
+            {
+                if (currPrompt.ID == ID)
+                {
+                    promptToShow = currPrompt;
+                }
+            }
+            return promptToShow;
         }
 
 
