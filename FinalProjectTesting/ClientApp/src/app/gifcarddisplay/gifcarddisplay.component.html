@@ -11,20 +11,31 @@
 </div>-->
 
 <div class="container">
+  <div class="row">
+    <div class="col">
+      <ul>
+        <li *ngFor="let currPrompt of promptDeck">
+          {{currPrompt.promptId}} {{currPrompt.promptSentence}}
+        </li>
+      </ul>
+    </div>
+  </div>
   <!-- think of this like card table, where you play your card
       before card is chosen, have blank placeholder prompting to choose card -->
+
   <div class="row playArea">
     <div class="col">
       <!--<div class="promptCard">
         <p>When your blind date shows up wearing a Fedora...</p>
       </div>-->
       <div class="promptCard bigCard">
-        <p>When your blind date shows up wearing a Fedora...</p>
+        <p>{{promptToShow.promptSentence}}</p>
       </div>
       <div class="winDetails">
         <p>Queen_Amanda wins!</p>
       </div>
     </div>
+    
     <div class="col cardPlaceholder">
       <div class="playedCard" *ngFor="let gif of chosenGif">
         <img [src]="gif.images.original.url" alt="Image" />

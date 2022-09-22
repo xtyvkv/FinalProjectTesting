@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GifCardService } from '../gif-card.service';
-
+import { GifCardService, } from '../gif-card.service';
+import { GameService, PromptCard, Game} from '../game.service';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-gifcarddisplay',
   templateUrl: './gifcarddisplay.component.html',
@@ -9,10 +10,15 @@ import { GifCardService } from '../gif-card.service';
 export class GifcarddisplayComponent implements OnInit {
   gifs: any[] = [];
   chosenGif: any[] = [];
+  promptToShow: PromptCard | any = null;
+  public ID: number = 2;
+  public promptDeck: PromptCard[] | any = null;
+  constructor(private gifCardService: GifCardService, private gameService: GameService , private thisRoute: ActivatedRoute ) { }
 
-  constructor(private gifCardService: GifCardService) { }
+ 
 
-  ngOnInit(): void {
+
+  async ngOnInit(): Promise<void> {
     this.gifCardService.getRandomGifs()
       .subscribe((response: any) => {
         console.log('gifCards', response);
@@ -23,8 +29,12 @@ export class GifcarddisplayComponent implements OnInit {
         console.log('chosenOne', response);
         this.chosenGif = response.data;
       });
+    let thisComponent: GifcarddisplayComponent = this;
+    let thisString: string | null = "";
+    thisComponent.ID = 2; 
+    thisComponent.promptToShow = await thisComponent.gameService.SeeSpecificPrompt(thisComponent.ID);
 
-    // this.gifs[0]
+    thisComponent.promptDeck = await thisComponent.gameService.createPromptDeck();
   }
 
   playBonkSound() {
