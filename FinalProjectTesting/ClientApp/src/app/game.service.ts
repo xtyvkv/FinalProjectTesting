@@ -10,6 +10,7 @@ export class GameService {
   private readonly promptUrl: string = "/game/SeeSpecificPrompt?ID=";
   public promptDeck: PromptCard[] | any = null;
   private readonly deckUrl: string = "game/AllPrompts";
+  public newGame: Game | any = null;
 
   async SeeSpecificPrompt(id: number): Promise<PromptCard> {
     let thisPrompt: PromptCard | any = null;
@@ -28,11 +29,11 @@ export class GameService {
     }
     return thisPrompt;
   }
-  public createPromptDeck(): Promise<PromptCard[]> {
+  public async createPromptDeck(): Promise<PromptCard[]> {
    
     try {
       let getDeckString: string = this.deckUrl;
-      this.promptDeck =  this.httpClient.get<PromptCard[]>(getDeckString).toPromise();
+      this.promptDeck =  await this.httpClient.get<PromptCard[]>(getDeckString).toPromise();
       console.log('Deck made')
     }
     catch (unexpectedException) {
@@ -44,8 +45,17 @@ export class GameService {
 
 
 
-  public startGame(): Game {
-    return new Game();
+  public async startGame(): Promise<Game> {
+    let localThis: GameService = this;
+    localThis.newGame = new Game();
+    localThis.newGame.gameStatus = "new";
+    localThis.newGame.gameID = 1;
+    localThis.promptDeck = await localThis.createPromptDeck();
+    localThis.newGame.promptDeck = localThis.promptDeck;
+    localThis.newGame.rounds = [];
+    localThis.newGame.players = [];
+    console.log('game made');
+    return localThis.newGame;
   }
   getRandomGifs() {
     return this.httpClient.get('https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=reaction&limit=5&offset=0&rating=g&lang=en');
@@ -61,11 +71,13 @@ export class Game {
   public players: Player[] = [];
   public rounds: Round[] = [];
   public promptDeck: PromptCard[] = [];
+  public gameStatus: string = "";
+  
 }
 export class Player {
   public ID: number = 0;
-  public Name: string = "";
-  public LifeTimePoints: number = 0;
+  public points: number = 0;
+  public hand: GifCard[] = [];
 
 }
 export class Round {
