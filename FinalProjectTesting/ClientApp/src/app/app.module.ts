@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { GifcarddisplayComponent } from './gifcarddisplay/gifcarddisplay.component';
 import { HeaderComponent } from './header/header.component';
 import { NewGameComponent } from './new-game/new-game.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NewGameComponent } from './new-game/new-game.component';
     FetchDataComponent,
     GifcarddisplayComponent,
     HeaderComponent,
-    NewGameComponent
+    NewGameComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

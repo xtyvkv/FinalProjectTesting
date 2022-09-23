@@ -10,11 +10,14 @@ export class NewGameComponent implements OnInit {
 
   constructor(private newGameService: GameService) { }
   public newGame: Game | any = null;
-
+  public newRound: Round | any = null;
 
   async ngOnInit(): Promise<void> {
     let thisComponent: NewGameComponent = this;
-    thisComponent.newGame = await thisComponent.newGameService.startGame();
+   // thisComponent.newGame = await thisComponent.newGameService.startGame();
+    thisComponent.newRound = await thisComponent.newGameService.startRound();
+
+  
   }
   public async getPlayAndRoundNum(): Promise<void> {
     let roundNum: number = 0;
