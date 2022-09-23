@@ -13,7 +13,7 @@
     {
         public int gameID { get; set; }
         public Player[] players { get; set; }
-        public Round[] rounds { get; set; }
+        //public Round[] rounds { get; set; }
         public PromptCard[] promptDeck { get; set; }
         public string gameStatus { get; set; }
       
