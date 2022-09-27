@@ -66,16 +66,16 @@ namespace FinalProjectTesting
             // Nothing needed
         }
 
-        public DbSet<GifCard> GifCard { get; set; }
+        public DbSet<Player> Player { get; set; }
         public DbSet<PromptCard> PromptCard { get; set; }
     }
 
-    public class GifCard
+    public class Player
     {
         [Key]
         public int ID { get; set; }
-        public string category { get; set; }
-        public string gif { get; set; }
+        public string name { get; set; }
+        public int mixesMatched { get; set; }
     }
 
     public class PromptCard

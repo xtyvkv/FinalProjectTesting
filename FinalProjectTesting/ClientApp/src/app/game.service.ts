@@ -95,6 +95,9 @@ export class GameService {
     localThis.players[2].points = 0;
     return localThis.players
   }
+
+  //THIS METHOD WILL BE EDITED LATER
+
   //public removeCard(cardToRemove: number, player: Player): void {
   //  let playerID: number = 0;
   //  for (var i = 0; i < this.players.length; i++) {
@@ -158,16 +161,16 @@ export class Game {
 export class Player {
   public ID: number = 0;
   public points: number = 0;
-  public hand: GifCard[] = [];
+ /* public hand: GifCard[] = [];*/
 
 }
 export class Round {
   public roundID: number = 0;
  /* public judge: Player | any = null;*/
-  public players: Player[] = [];
-  public promptCard: PromptCard | any = null;
-  public plays: GifCard[] = [];
-  public winningCard: GifCard | any = null;
+  public player: Player | any = null;
+  public promptCards: PromptCard[] | any = null;
+  public hand: GifCard[] = [];
+  //public winningCard: GifCard | any = null;
 }
 interface GifyResponse {
   data: GifCard[],
