@@ -54,7 +54,7 @@ export class GameService {
   //}
 
   async create3PromptDeck(): Promise<PromptCard[]> {
-    let promptDeck: PromptCard | any = null;
+    let promptDeck: PromptCard[] | any = null;
     try {
       let getDeckString: string = this.deckUrl;
       promptDeck = await this.httpClient.get<PromptCard[]>(getDeckString).toPromise();
