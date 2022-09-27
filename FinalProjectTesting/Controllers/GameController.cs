@@ -14,6 +14,7 @@ namespace FinalProjectTesting.Controllers
         private CardGameContext _cardGameContext;
         private readonly ILogger<GameController> _logger;
         public PromptCard[] promptDB;
+        public Player[] playersDB;
         public GameController(ILogger<GameController> logger, CardGameContext cardGameContext)
         {
             _logger = logger;
@@ -61,6 +62,13 @@ namespace FinalProjectTesting.Controllers
                 }
             }
             return promptList.ToArray();
+        }
+        [Route("getPlayers")]
+        [HttpGet]
+        public Player[] getPlayers()
+        {
+            playersDB = _cardGameContext.Player.ToArray();
+            return playersDB;
         }
     }
 }
