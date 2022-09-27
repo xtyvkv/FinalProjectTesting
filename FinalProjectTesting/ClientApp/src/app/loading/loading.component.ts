@@ -10,7 +10,7 @@ import { NewGameComponent } from '../new-game/new-game.component';
 export class LoadingComponent implements OnInit {
 
   constructor(private newGameService: GameService, private newgamecomp: NewGameComponent) { }
-  public players
+  /*public players*/
 
   ngOnInit(): void {
     let playOneDeck: GifCard[] = [];

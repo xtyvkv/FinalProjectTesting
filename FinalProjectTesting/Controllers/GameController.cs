@@ -42,7 +42,25 @@ namespace FinalProjectTesting.Controllers
             }
             return promptToShow;
         }
-
-
+        [Route("Get3RandomPrompts")]
+        [HttpGet]
+        public PromptCard[] Get3RandomPrompts()
+        {
+            var promptList = new List<PromptCard>();
+            promptDB = _cardGameContext.PromptCard.ToArray();
+            Random rand = new Random();
+            int randValOne = rand.Next(promptDB.Length);
+            int randValTwo = rand.Next(promptDB.Length);
+            int randValThree = rand.Next(promptDB.Length);
+            foreach (var prompt in promptDB)
+            {
+                if (prompt.ID == randValOne || prompt.ID == randValTwo || prompt.ID == randValThree)
+                {
+                    PromptCard promptCard = prompt;
+                    promptList.Add(promptCard);
+                }
+            }
+            return promptList.ToArray();
+        }
     }
 }

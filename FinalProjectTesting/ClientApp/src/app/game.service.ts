@@ -9,10 +9,11 @@ export class GameService {
   constructor(private httpClient: HttpClient) { }
   private readonly promptUrl: string = "/game/SeeSpecificPrompt?ID=";
   public promptDeck: PromptCard[] | any = null;
-  private readonly deckUrl: string = "game/AllPrompts";
+  /*private readonly deckUrl: string = "game/AllPrompts";*/
+  private readonly deckUrl: string = "/game/Get3RandomPrompts";
   public newGame: Game | any = null;
   public newRound: Round | any = null;
-  
+  private readonly randomGifUrl: string = "https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=reaction&limit=5&offset=0&rating=g&lang=en";
   public playDeckOne: GifCard[] | any = null;
   public playDeckTwo: GifCard[] | any = null;
   public playDeckThree: GifCard[] | any = null;
@@ -38,18 +39,32 @@ export class GameService {
     }
     return thisPrompt;
   }
-  public async createPromptDeck(): Promise<PromptCard[]> {
-   
+  //public async createPromptDeck(): Promise<PromptCard[]> {
+
+  //  try {
+  //    let getDeckString: string = this.deckUrl;
+  //    this.promptDeck =  await this.httpClient.get<PromptCard[]>(getDeckString).toPromise();
+  //    console.log('Deck made')
+  //  }
+  //  catch (unexpectedException) {
+  //    this.promptDeck = [];
+  //  }
+
+  //  return this.promptDeck;
+  //}
+
+  async create3PromptDeck(): Promise<PromptCard[]> {
+    let promptDeck: PromptCard | any = null;
     try {
       let getDeckString: string = this.deckUrl;
-      this.promptDeck =  await this.httpClient.get<PromptCard[]>(getDeckString).toPromise();
+      promptDeck = await this.httpClient.get<PromptCard[]>(getDeckString).toPromise();
       console.log('Deck made')
     }
     catch (unexpectedException) {
-      this.promptDeck = [];
+      promptDeck = [];
     }
 
-    return this.promptDeck;
+    return promptDeck;
   }
 
   public async startRound(): Promise<Round> {
@@ -101,7 +116,8 @@ export class GameService {
     localThis.newGame = new Game();
     localThis.newGame.gameStatus = "new";
     localThis.newGame.gameID = 1;
-    localThis.promptDeck = await localThis.createPromptDeck();
+    /*localThis.promptDeck = await localThis.createPromptDeck();*/
+    localThis.promptDeck = await localThis.create3PromptDeck();
     localThis.newGame.promptDeck = localThis.promptDeck;
     localThis.newGame.rounds = [];
     localThis.newGame.players = [];
@@ -114,6 +130,20 @@ export class GameService {
 
   getChosenGif() {
     return this.httpClient.get('https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=shock&limit=1&offset=0&rating=g&lang=en');
+  }
+
+  async getGifDeck(): Promise<GifCard[]> {
+    let hand: GifCard[] | any = null;
+    try {
+      let gifString: string = this.randomGifUrl;
+      let gifResponse: any = await this.httpClient.get<GifyResponse>(gifString).toPromise();
+      hand = gifResponse.data;
+      console.log(hand)
+    }
+    catch (unexpectedException) {
+      hand = [];
+    }
+    return hand;
   }
 
 }
@@ -139,10 +169,43 @@ export class Round {
   public plays: GifCard[] = [];
   public winningCard: GifCard | any = null;
 }
-export class GifCard {
-  public ID: number = 0;
-  public category: string = "";
-  public gif: string = "";
+interface GifyResponse {
+  data: GifCard[],
+  pagination: GifyPaginationResponse,
+  meta: GifyMetaResponse
+}//end of GifyResponse
+interface GifyPaginationResponse {
+  total_count: number,
+  count: number,
+  offest: number
+}//end of GifyPaginationResponse
+interface GifyMetaResponse {
+  status: number,
+  msg: string,
+  response_id: string
+}//end of GifyMetaResponse
+export interface GifCard {
+  type: string,
+  id: string,
+  url: string,
+  slug: string,
+  bitly_gif_url: string,
+  bitly_url: string,
+  embed_url: string,
+  username: string,
+  source: string,
+  title: string,
+  images: GifImage
+}
+export interface GifImage {
+  original: imageInfo,
+  downsized: imageInfo
+}
+export interface imageInfo {
+  height: string,
+  width: string,
+  size: number,
+  url: string
 }
 export class PromptCard {
   public ID: number = 0;

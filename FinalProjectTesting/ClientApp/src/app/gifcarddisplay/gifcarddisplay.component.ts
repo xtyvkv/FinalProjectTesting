@@ -34,7 +34,10 @@ export class GifcarddisplayComponent implements OnInit {
     thisComponent.ID = 2; 
     thisComponent.promptToShow = await thisComponent.gameService.SeeSpecificPrompt(thisComponent.ID);
 
-    thisComponent.promptDeck = await thisComponent.gameService.createPromptDeck();
+    /*thisComponent.promptDeck = await thisComponent.gameService.createPromptDeck();*/
+    thisComponent.promptDeck = await thisComponent.gameService.create3PromptDeck();
+
+
   }
 
   playBonkSound() {
