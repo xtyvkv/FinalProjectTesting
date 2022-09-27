@@ -13,22 +13,20 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <ul>
-        <li *ngFor="let currPrompt of promptDeck">
-          {{currPrompt.promptId}} {{currPrompt.promptSentence}}
-        </li>
-      </ul>
+      <div class="promptCard" *ngFor="let currPrompt of promptDeck">
+        <p>{{currPrompt.promptSentence}}</p>
+      </div>
     </div>
   </div>
   <!-- think of this like card table, where you play your card
       before card is chosen, have blank placeholder prompting to choose card -->
 
-  <div class="row playArea">
-    <div class="col">
+  <!--<div class="row playArea">
+    <div class="col">-->
       <!--<div class="promptCard">
         <p>When your blind date shows up wearing a Fedora...</p>
       </div>-->
-      <div class="promptCard bigCard">
+      <!--<div class="promptCard bigCard">
         <p>{{promptToShow.promptSentence}}</p>
       </div>
       <div class="winDetails">
@@ -41,7 +39,7 @@
         <img [src]="gif.images.original.url" alt="Image" />
       </div>
     </div>
-  </div>
+  </div>-->
   <div class="container fixed-bottom clearPlayersBox">
     <!-- in player's own view, push this to the bottom, above the playerBox -->
     <div class="row handHeader">
