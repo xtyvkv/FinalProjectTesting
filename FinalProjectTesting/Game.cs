@@ -24,6 +24,10 @@
         //public Dictionary<Player, GifCard> winningCardAndPlayer { get; set; }
 
     }
+    public class createPlayerParameters
+    {
+        public string newPlayerName { get; set; }
+    }
     public class GifyResponse
     {
         public GifCard[] data { get; set; }

@@ -14,29 +14,29 @@ export class CreatePlayerComponent implements OnInit {
   constructor(private newGameService: GameService, private _ActivatedRoute: ActivatedRoute) { }
   public players: Player[] | any = null;
   public newPlayer: Player | any = null;
-  public name: string | any = null;
+  /*public name: string | any = null;*/
 
   async ngOnInit(): Promise<void> {
     let thisComponent: CreatePlayerComponent = this;
-    let thisString: string | null = "";
-    thisString = thisComponent._ActivatedRoute.snapshot.paramMap.get("name");
-    thisComponent.name = thisString!;
+   // let thisString: string | null = "";
+   // thisString = thisComponent._ActivatedRoute.snapshot.paramMap.get("name");
+   // thisComponent.name = thisString;
     thisComponent.players = await thisComponent.newGameService.getPlayers();
    // thisComponent.newPlayer = await thisComponent.newGameService.createPlayer(this.name);
     
   }
   public async getName(name: string): Promise<void> {
     await this.newGameService.getName(name);
-    console.log("name added");
-    window.alert('name has been added');
+    console.log(name);
+    window.alert(name);
+    /*window.alert('name has been added');*/
   }
-  public async createPlayer(playerName: string): Promise<Player> {
-    this.newPlayer.name = this.getName(playerName);
-    this.newPlayer.mixesMatched = 0;
-    await this.newGameService.createPlayer(playerName);
-    this.players.push(this.newPlayer);
+  public async createPlayer(playerName: string): Promise<void> {
+    let thisComponent: CreatePlayerComponent = this;
+    //this.newPlayer.name = this.createPlayer(playerName);
+    //this.newPlayer.mixesMatched = 0;
+    await thisComponent.newGameService.createPlayer(playerName);
     console.log("name added");
     window.alert('Player added');
-    return this.newPlayer;
   }
 }

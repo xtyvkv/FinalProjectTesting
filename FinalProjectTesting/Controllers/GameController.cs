@@ -73,14 +73,14 @@ namespace FinalProjectTesting.Controllers
         
         [Route("createPlayer")]
         [HttpPost]
-        public Player createPlayer(string playerName)
+        public void createPlayer([FromBody] createPlayerParameters parameters)
         {
             Player newPlayer = new Player();
-            newPlayer.name = playerName;
+            newPlayer.name = parameters.newPlayerName;
             newPlayer.mixesMatched = 0;
             _cardGameContext.Player.Add(newPlayer);
             _cardGameContext.SaveChanges();
-            return newPlayer;
+            
             //copied from assessment6 using mvc? not sure if this is right must review later
         }
     }

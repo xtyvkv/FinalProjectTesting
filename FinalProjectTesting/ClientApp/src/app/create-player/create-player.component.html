@@ -31,18 +31,16 @@
 <h1>Create a New Player</h1>
 <form action="createPlayer" method="post">
   <div class="form-group">
-    <label for="name">name</label>
-    <input name="name" />
+    <label for="name">Name</label>
+    <input name="name" id="playerName" #playerName />
     <!--<input type="submit"/>-->
     <p class="tiny">Maximum of 50 characters.</p>
 
 
-    <button type="submit" class="btn-primary" (click)="getName(name)">Submit</button>
+    <button type="submit" class="btn-primary" (click)="createPlayer(playerName.value)">Submit</button>
   </div>
 </form>
-<div>
-  <p>{{name}}</p>
-</div>
+
 
 
 
