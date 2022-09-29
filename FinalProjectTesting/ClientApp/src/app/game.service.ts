@@ -15,6 +15,7 @@ export class GameService {
   public newRound: Round | any = null;
   private readonly randomGifUrl: string = "https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=reaction&limit=5&offset=0&rating=g&lang=en";
   private readonly getPlayerUrl: string = "/game/getPlayers";
+  private readonly createPlayerUrl: string = 'game/createPlayer';
   public playDeckOne: GifCard[] | any = null;
   public playDeckTwo: GifCard[] | any = null;
   public playDeckThree: GifCard[] | any = null;
@@ -85,13 +86,15 @@ export class GameService {
     console.log('name done');
   }
 
-  async createPlayer(playerName: string): Promise<Player> {
-    let newPlayer: Player | any = null;
-    newPlayer.name = this.getName(playerName);
-    newPlayer.mixesMatched = 0;
-    this.players.push(newPlayer);
+  public async createPlayer(playerName: string): Promise<void> {
+   
+    let thisService: GameService = this;
+    let parameters: createPlayerParameters = new createPlayerParameters();
+    parameters.newPlayerName = playerName;
+  
+    await thisService.httpClient.post<createPlayerParameters>(thisService.createPlayerUrl, parameters).toPromise();
+
     console.log('player added');
-    return newPlayer;
   }
 
   public async startRound(): Promise<Round> {
@@ -176,6 +179,9 @@ export class Player {
   public mixesMatched: number = 0;
  /* public hand: GifCard[] = [];*/
 
+}
+export class createPlayerParameters {
+  public newPlayerName: string = "";
 }
 export class Round {
   public roundID: number = 0;
