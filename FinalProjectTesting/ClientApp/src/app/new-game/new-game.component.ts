@@ -12,12 +12,14 @@ export class NewGameComponent implements OnInit {
   public newGame: Game | any = null;
   public newRound: Round | any = null;
   public hand: GifCard[] | any = null;
+  public players: Player[] | any = null;
+
   async ngOnInit(): Promise<void> {
     let thisComponent: NewGameComponent = this;
    // thisComponent.newGame = await thisComponent.newGameService.startGame();
     thisComponent.newRound = await thisComponent.newGameService.startRound();
     thisComponent.hand = await thisComponent.newGameService.getGifDeck();
-  
+    thisComponent.players = await thisComponent.newGameService.getPlayers();
   }
   public async getPlayAndRoundNum(): Promise<void> {
     let roundNum: number = 0;

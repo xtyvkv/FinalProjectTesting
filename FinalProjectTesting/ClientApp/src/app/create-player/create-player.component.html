@@ -1,0 +1,59 @@
+<p>create-player works!</p>
+
+<!--<input #createPlayer
+       (keyup.enter)="createPlayer(newPlayer.name)"
+       (blur)="createPlayer"(newPlayer.name); newPlayer.name="''" />
+<button type="button" (click)="createPlayer(newPlayer.name)">Create</button>-->
+<!--<div class="container newGameForm">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col col-6">
+      <p><i>testing area for new game form</i></p>
+      <form>-->
+<!--<div class="form-group">
+  <label for="exampleInputEmail1">Game Name</label>
+  <input type="" class="form-control" id="" aria-describedby="" placeholder="Goofy Goobers">
+</div>-->
+<!--<div class="form-group">
+        <label for="#">Player Name</label>
+        <input type="text" class="form-control" id="newPlayer.name" placeholder="CoolUser420" name="newPlayer.name" >
+      </div>
+      <button type="button" class="btn btn-primary" (click)="createPlayer(newPlayer.name)">Create</button>
+
+    </form>
+  </div>
+</div-->
+
+<!--</div>-->
+
+
+
+<h1>Create a New Player</h1>
+<form action="createPlayer" method="post">
+  <div class="form-group">
+    <label for="name">name</label>
+    <input name="name" />
+    <!--<input type="submit"/>-->
+    <p class="tiny">Maximum of 50 characters.</p>
+
+
+    <button type="submit" class="btn-primary" (click)="getName(name)">Submit</button>
+  </div>
+</form>
+<div>
+  <p>{{name}}</p>
+</div>
+
+
+
+
+
+
+
+
+<ul>
+  <li *ngFor="let player of players">
+    {{player.name}}
+  </li>
+
+</ul>
