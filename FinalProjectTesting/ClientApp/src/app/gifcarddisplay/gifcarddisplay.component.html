@@ -13,11 +13,27 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="promptCard" *ngFor="let currPrompt of promptDeck">
-        <p>{{currPrompt.promptSentence}}</p>
+      <div class="row" *ngFor="let currPrompt of promptDeck">
+        <div class="col">
+          <div class="promptCard">
+            <p>{{currPrompt.promptSentence}}</p>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="col">
+      <div class="blankSpace" style="background-image: url('{{singleGif1.images.original.url}}');"></div>
+      <div class="blankSpace alt" style="background-image: url('{{singleGif2.images.original.url}}');"></div>
+      <div class="blankSpace" style="background-image: url('{{singleGif3.images.original.url}}');"></div>
+    </div>
   </div>
+  <div class="row">
+    <div class="col" style="text-align: center;">
+      <button class="optionButton" onClick="window.location.reload();">Go Again</button>
+      <button class="optionButton" [routerLink]="['/finish']">I'm Done!</button>
+    </div>
+  </div>
+</div>
   <!-- think of this like card table, where you play your card
       before card is chosen, have blank placeholder prompting to choose card -->
 
@@ -40,9 +56,9 @@
       </div>
     </div>
   </div>-->
-  <div class="container fixed-bottom clearPlayersBox">
+  <!--<div class="container fixed-bottom clearPlayersBox">-->
     <!-- in player's own view, push this to the bottom, above the playerBox -->
-    <div class="row handHeader">
+    <!--<div class="row handHeader">
       <div class="col">
         <p>
           Your Hand
@@ -62,10 +78,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!-- turn into its own component -->
-    <nav class="navbar fixed-bottom playersBox">
+    <!--<nav class="navbar fixed-bottom playersBox">
       <ul class="nav">
         <li class="nav-item count">(4/5)</li>
         <li class="nav-item">KaigeMiller3000 (2) /</li>
@@ -81,7 +97,7 @@
     </nav>
 
   </div>
-</div>
+</div>-->
   <!--<div class="playersBox">
     <ul>
       <li class="count">Players (3/4)</li>

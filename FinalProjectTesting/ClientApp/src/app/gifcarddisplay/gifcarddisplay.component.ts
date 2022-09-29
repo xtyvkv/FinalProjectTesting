@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GifCardService, } from '../gif-card.service';
-import { GameService, PromptCard, Game} from '../game.service';
+import { GameService, PromptCard, Game, Player} from '../game.service';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-gifcarddisplay',
@@ -9,26 +9,44 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class GifcarddisplayComponent implements OnInit {
   gifs: any[] = [];
-  chosenGif: any[] = [];
+  singleGif1: any | null;
+  singleGif2: any | null;
+  singleGif3: any | null;
   promptToShow: PromptCard | any = null;
   public ID: number = 2;
   public promptDeck: PromptCard[] | any = null;
+  public players: Player[] | any = null;
+
   constructor(private gifCardService: GifCardService, private gameService: GameService , private thisRoute: ActivatedRoute ) { }
 
  
 
 
   async ngOnInit(): Promise<void> {
-    this.gifCardService.getRandomGifs()
+    //this.gifCardService.getRandomGifs()
+    //  .subscribe((response: any) => {
+    //    console.log('gifCards', response);
+    //    this.gifs = response.data;
+    //  });
+    // reaction
+    this.gifCardService.getSingleRandomGif1()
       .subscribe((response: any) => {
-        console.log('gifCards', response);
-        this.gifs = response.data;
+        console.log('1', response);
+        this.singleGif1 = response.data;
       });
-    this.gifCardService.getChosenGif()
+    // sad
+    this.gifCardService.getSingleRandomGif2()
       .subscribe((response: any) => {
-        console.log('chosenOne', response);
-        this.chosenGif = response.data;
+        console.log('2', response);
+        this.singleGif2 = response.data;
       });
+    // happy
+    this.gifCardService.getSingleRandomGif3()
+      .subscribe((response: any) => {
+        console.log('3', response);
+        this.singleGif3 = response.data;
+      });
+
     let thisComponent: GifcarddisplayComponent = this;
     let thisString: string | null = "";
     thisComponent.ID = 2; 
@@ -36,7 +54,7 @@ export class GifcarddisplayComponent implements OnInit {
 
     /*thisComponent.promptDeck = await thisComponent.gameService.createPromptDeck();*/
     thisComponent.promptDeck = await thisComponent.gameService.create3PromptDeck();
-
+    thisComponent.players = await thisComponent.gameService.getPlayers();
 
   }
 

@@ -14,6 +14,7 @@ export class GameService {
   public newGame: Game | any = null;
   public newRound: Round | any = null;
   private readonly randomGifUrl: string = "https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=reaction&limit=5&offset=0&rating=g&lang=en";
+  private readonly getPlayerUrl: string = "/game/getPlayers";
   public playDeckOne: GifCard[] | any = null;
   public playDeckTwo: GifCard[] | any = null;
   public playDeckThree: GifCard[] | any = null;
@@ -63,8 +64,34 @@ export class GameService {
     catch (unexpectedException) {
       promptDeck = [];
     }
-
     return promptDeck;
+  }
+
+  async getPlayers(): Promise<Player[]> {
+    let players: Player[] | any = null;
+    try {
+      let getPlayerString: string = this.getPlayerUrl;
+      players = await this.httpClient.get<Player[]>(getPlayerString).toPromise();
+      console.log('Players made');
+    }
+    catch (unexpectedException) {
+      players = [];
+    }
+    return players;
+  }
+
+  async getName(name: string): Promise<void> {
+    let playerName: string = name;
+    console.log('name done');
+  }
+
+  async createPlayer(playerName: string): Promise<Player> {
+    let newPlayer: Player | any = null;
+    newPlayer.name = this.getName(playerName);
+    newPlayer.mixesMatched = 0;
+    this.players.push(newPlayer);
+    console.log('player added');
+    return newPlayer;
   }
 
   public async startRound(): Promise<Round> {
@@ -72,29 +99,14 @@ export class GameService {
     let localThis: GameService = this;
     localThis.newRound = new Round();
     localThis.newRound.roundID = 1;
-    localThis.newRound.players = localThis.getPlayers();
+    localThis.newRound.players = await localThis.getPlayers();
     localThis.newRound.promptCard = await localThis.SeeSpecificPrompt(2);
     localThis.newRound.plays = [];
     localThis.newRound.winningCard = [];
     console.log(localThis.newRound);
     return localThis.newRound;
   }
-  public async getPlayers(): Promise<Player[]> {
-    let localThis: GameService = this;    
-    localThis.playDeckOne = await localThis.httpClient.get<GifCard[]>('https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=reaction&limit=5&offset=0&rating=g&lang=en').toPromise();
-    localThis.playDeckTwo = await localThis.httpClient.get<GifCard[]>('https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=reaction&limit=5&offset=0&rating=g&lang=en').toPromise();
-    localThis.playDeckThree = await localThis.httpClient.get<GifCard[]>('https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=reaction&limit=5&offset=0&rating=g&lang=en').toPromise();
-    localThis.players[0].hand = localThis.playDeckOne;
-    localThis.players[1].hand = localThis.playDeckTwo;
-    localThis.players[2].hand = localThis.playDeckThree;
-    localThis.players[0].ID = 1;
-    localThis.players[1].ID = 2;
-    localThis.players[2].ID = 3;
-    localThis.players[0].points = 0;
-    localThis.players[1].points = 0;
-    localThis.players[2].points = 0;
-    return localThis.players
-  }
+  
 
   //THIS METHOD WILL BE EDITED LATER
 
@@ -160,7 +172,8 @@ export class Game {
 }
 export class Player {
   public ID: number = 0;
-  public points: number = 0;
+  public name: string = "";
+  public mixesMatched: number = 0;
  /* public hand: GifCard[] = [];*/
 
 }

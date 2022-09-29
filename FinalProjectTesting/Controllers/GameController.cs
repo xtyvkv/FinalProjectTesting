@@ -70,5 +70,18 @@ namespace FinalProjectTesting.Controllers
             playersDB = _cardGameContext.Player.ToArray();
             return playersDB;
         }
+        
+        [Route("createPlayer")]
+        [HttpPost]
+        public Player createPlayer(string playerName)
+        {
+            Player newPlayer = new Player();
+            newPlayer.name = playerName;
+            newPlayer.mixesMatched = 0;
+            _cardGameContext.Player.Add(newPlayer);
+            _cardGameContext.SaveChanges();
+            return newPlayer;
+            //copied from assessment6 using mvc? not sure if this is right must review later
+        }
     }
 }
