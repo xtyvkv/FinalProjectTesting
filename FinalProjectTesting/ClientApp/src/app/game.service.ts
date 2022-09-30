@@ -16,6 +16,7 @@ export class GameService {
   private readonly randomGifUrl: string = "https://api.giphy.com/v1/gifs/search?api_key=krIIgdHCVeZ4XkrILHcljt661U7hJ9kK&q=reaction&limit=5&offset=0&rating=g&lang=en";
   private readonly getPlayerUrl: string = "/game/getPlayers";
   private readonly createPlayerUrl: string = 'game/createPlayer';
+  private readonly deletePlayerUrl: string = 'game/deletePlayer';
   public playDeckOne: GifCard[] | any = null;
   public playDeckTwo: GifCard[] | any = null;
   public playDeckThree: GifCard[] | any = null;
@@ -95,6 +96,13 @@ export class GameService {
     await thisService.httpClient.post<createPlayerParameters>(thisService.createPlayerUrl, parameters).toPromise();
 
     console.log('player added');
+  }
+  public async deletePlayer(name: string): Promise<void> {
+    let thisService: GameService = this;
+    let parameters: createPlayerParameters = new createPlayerParameters();
+    parameters.newPlayerName = name;
+    await thisService.httpClient.post<createPlayerParameters>(thisService.deletePlayerUrl, parameters).toPromise();
+    console.log('player deleted');
   }
 
   public async startRound(): Promise<Round> {

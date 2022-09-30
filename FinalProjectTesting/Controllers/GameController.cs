@@ -83,5 +83,21 @@ namespace FinalProjectTesting.Controllers
             
             //copied from assessment6 using mvc? not sure if this is right must review later
         }
+
+        [Route("deletePlayer")]
+        [HttpPost]
+        public void deletePlayer([FromBody] createPlayerParameters parameters)
+        {
+            Player playerToDelete = new Player();
+            foreach(var player in _cardGameContext.Player.ToArray())
+            {
+                if (player.name == parameters.newPlayerName)
+                {
+                    _cardGameContext.Player.Remove(player);
+                    _cardGameContext.SaveChanges();
+                    break;
+                }
+            }
+        }
     }
 }

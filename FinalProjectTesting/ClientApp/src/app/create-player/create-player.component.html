@@ -51,7 +51,10 @@
 
 <ul>
   <li *ngFor="let player of players">
-    {{player.name}}
+   <p> {{player.name}}</p>
+    <p>
+      <button class="btn-primary btn-danger" (click)="deletePlayer(player.name)">Delete Player</button>
+    </p>
   </li>
 
 </ul>

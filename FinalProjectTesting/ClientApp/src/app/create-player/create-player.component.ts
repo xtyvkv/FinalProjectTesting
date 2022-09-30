@@ -39,4 +39,10 @@ export class CreatePlayerComponent implements OnInit {
     console.log("name added");
     window.alert('Player added');
   }
+  public async deletePlayer(playerName: string): Promise<void> {
+    let thisComponent: CreatePlayerComponent = this;
+    await thisComponent.newGameService.deletePlayer(playerName);
+    console.log("name passed");
+    window.alert('player name deleted');
+  }
 }
