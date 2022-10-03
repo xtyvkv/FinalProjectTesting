@@ -1,0 +1,34 @@
+<!--<h1>Enter Your Name</h1>
+<form action="createPlayer" method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name="name" id="playerName" #playerName />
+    <input type="submit" />
+    <p class="tiny">Maximum of 50 characters.</p>
+    <button type="submit" class="btn-primary" (click)="createPlayer(playerName.value)">Submit</button>
+  </div>
+</form>
+<br />
+<br />-->
+<h1>T-R-E-M-E-N-D-O-R Players</h1>
+<table class="table table-striped" width="100">
+  <thead>
+
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <!--<td>
+        <input type="text" placeholder="player.name.value" #playerName/>
+      </td>-->
+      <td>
+        <p> {{player.name}}</p>
+      </td>
+      <td>
+        <button class="optionButton">Modify Player</button>
+      </td>
+      <td>
+        <button class="optionButton" (click)="deletePlayer(player.name)">Delete Player</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

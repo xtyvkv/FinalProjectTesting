@@ -1,5 +1,3 @@
-<p>create-player works!</p>
-
 <!--<input #createPlayer
        (keyup.enter)="createPlayer(newPlayer.name)"
        (blur)="createPlayer"(newPlayer.name); newPlayer.name="''" />
@@ -26,35 +24,14 @@
 
 <!--</div>-->
 
-
-
-<h1>Create a New Player</h1>
+<h1>Enter Your Name</h1>
 <form action="createPlayer" method="post">
   <div class="form-group">
     <label for="name">Name</label>
     <input name="name" id="playerName" #playerName />
     <!--<input type="submit"/>-->
     <p class="tiny">Maximum of 50 characters.</p>
-
-
     <button type="submit" class="btn-primary" (click)="createPlayer(playerName.value)">Submit</button>
   </div>
 </form>
 
-
-
-
-
-
-
-
-
-<ul>
-  <li *ngFor="let player of players">
-   <p> {{player.name}}</p>
-    <p>
-      <button class="btn-primary btn-danger" (click)="deletePlayer(player.name)">Delete Player</button>
-    </p>
-  </li>
-
-</ul>
