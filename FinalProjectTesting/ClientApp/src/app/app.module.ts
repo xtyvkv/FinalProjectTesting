@@ -16,6 +16,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { CreatePlayerComponent } from './create-player/create-player.component';
 import { HistoryComponent } from './history/history.component';
 import { FinishComponent } from './finish/finish.component';
+import { ManagePlayersComponent } from './manage-players/manage-players.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FinishComponent } from './finish/finish.component';
     CreatePlayerComponent,
     HistoryComponent,
     FinishComponent,
+    ManagePlayersComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,7 +46,8 @@ import { FinishComponent } from './finish/finish.component';
       { path: 'new-game', component: NewGameComponent },
       { path: 'create-player', component: CreatePlayerComponent },
       { path: 'history', component: HistoryComponent },
-      {path: 'finish', component: FinishComponent},
+      { path: 'finish', component: FinishComponent },
+      { path: 'manageplayers', component: ManagePlayersComponent },
     ])
   ],
   providers: [],

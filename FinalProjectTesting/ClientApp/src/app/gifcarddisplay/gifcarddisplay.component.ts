@@ -71,5 +71,13 @@ export class GifcarddisplayComponent implements OnInit {
     audio.load();
     audio.play();
   }
+
+  isShown: boolean = false; // hidden by default
+  toggleShow() {
+
+    this.isShown = !this.isShown;
+
+  }
+
 }
 

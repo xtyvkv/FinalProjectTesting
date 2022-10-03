@@ -49,20 +49,15 @@
   </div>
   <div class="headerText">
     <b>Angular Assassins</b><br />
-    <span class="headerSubText">Round 1 - </span><span class="headerStatus">Judging...</span>
+    <span class="headerStatus">T-R-E-M-E-N-D-O-R</span>
   </div>
   <div class="headerMenu">
     <button type="button" class="headerButton" [routerLink]="['/']">Home</button>
-    <button type="button" class="headerButton" [routerLink]="['/new-game']">New Game</button>
+    <!--<button type="button" class="headerButton" [routerLink]="['/new-game']">New Game</button>-->
     <button type="button" class="headerButton" [routerLink]="['/create-player']">Create Player</button>
     <button type="button" class="headerButton" [routerLink]="['/gifcarddisplay']">Go</button>
-    <button type="button" class="headerButton" [routerLink]="['/history']">History</button>
-    <button type="button" class="headerButton" [routerLink]="['/finish']">Finish</button>
-
-    <button type="button" class="headerButton" (click)="toggleShow()">Pause</button>
+    <!--<button type="button" class="headerButton" [routerLink]="['/finish']">Finish</button>-->
+    <button type="button" class="headerButton" [routerLink]="['/manageplayers']">Manage Players</button>
+    <!--<button type="button" class="headerButton" (click)="toggleShow()">Pause</button>-->
   </div>
-</div>
-
-<div *ngIf="isShown" class="row container-fluid paused" id="divshow">
-  <p>Paused...<br /> <button (click)="toggleShow()">Resume</button> </p>
 </div>
