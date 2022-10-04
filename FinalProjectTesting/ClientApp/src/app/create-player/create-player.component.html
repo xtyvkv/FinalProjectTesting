@@ -24,14 +24,22 @@
 
 <!--</div>-->
 
-<h1>Enter Your Name</h1>
-<form action="createPlayer" method="post">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input name="name" id="playerName" #playerName />
-    <!--<input type="submit"/>-->
-    <p class="tiny">Maximum of 50 characters.</p>
-    <button type="submit" class="btn-primary" (click)="createPlayer(playerName.value)">Submit</button>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col col-8">
+      <h1>Enter Your Name To Begin</h1>
+      <form action="createPlayer" method="post">
+        <div class="form-group">
+          <label for="name">Name &nbsp;</label>
+          <input name="name" id="playerName" #playerName />
+          <!--<input type="submit"/>-->
+          <p class="tiny">Maximum of 50 characters.</p>
+          <button type="submit" class="btn-primary optionButton" (click)="createPlayer(playerName.value)">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="col"></div>
   </div>
-</form>
+</div>
 
