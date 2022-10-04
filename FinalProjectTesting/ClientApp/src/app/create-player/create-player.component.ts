@@ -11,7 +11,7 @@ export class CreatePlayerComponent implements OnInit {
   //setInputData(text: string) {
   //  this.inputText = text;
   //}
-  constructor(private newGameService: GameService, private _ActivatedRoute: ActivatedRoute) { }
+  constructor(private newGameService: GameService, private _ActivatedRoute: ActivatedRoute, private _thisRoute: Router) { }
   public players: Player[] | any = null;
   public newPlayer: Player | any = null;
   /*public name: string | any = null;*/
@@ -38,6 +38,7 @@ export class CreatePlayerComponent implements OnInit {
     await thisComponent.newGameService.createPlayer(playerName);
     console.log("name added");
     window.alert('Player added');
+    this._thisRoute.navigateByUrl('gifcarddisplay');
   }
   public async deletePlayer(playerName: string): Promise<void> {
     let thisComponent: CreatePlayerComponent = this;
