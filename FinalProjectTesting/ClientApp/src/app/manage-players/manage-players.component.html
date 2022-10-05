@@ -18,13 +18,20 @@
   <tbody>
     <tr *ngFor="let player of players">
       <!--<td>
-        <input type="text" placeholder="player.name.value" #playerName/>
-      </td>-->
-      <td>
-        <p> {{player.name}}</p>
+    <input type="text" placeholder="player.name.value" #playerName/>
+  </td>-->
+      <td *ngIf="startModify">
+        <p><input type="text" placeholder="{{player.name}}" /></p>
+        <!--<button class="optionButton"--> <!--(click)=""-->
       </td>
-      <td>
-        <button class="optionButton">Modify Player</button>
+      <td *ngIf="!startModify">
+        <p>{{player.name}}</p>
+      </td>
+      <td *ngIf="startModify">
+        <p><input type="submit" class="optionButton" (click)="startModification(player.id, player.name)" /></p>
+      </td>
+      <td *ngIf="!startModify">
+        <button class="optionButton" (click)="startModification(player.id, player.name)">Modify Player</button>
       </td>
       <td>
         <button class="optionButton" (click)="deletePlayer(player.name)">Delete Player</button>

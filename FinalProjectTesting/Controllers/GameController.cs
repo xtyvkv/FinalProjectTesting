@@ -20,7 +20,7 @@ namespace FinalProjectTesting.Controllers
             _logger = logger;
             _cardGameContext = cardGameContext;
         }
-        
+
         [Route("AllPrompts")]
         [HttpGet]
         public PromptCard[] AllPrompts()
@@ -34,7 +34,7 @@ namespace FinalProjectTesting.Controllers
         {
             promptDB = _cardGameContext.PromptCard.ToArray();
             var promptToShow = new PromptCard();
-            foreach(var currPrompt in promptDB)
+            foreach (var currPrompt in promptDB)
             {
                 if (currPrompt.ID == ID)
                 {
@@ -70,7 +70,7 @@ namespace FinalProjectTesting.Controllers
             playersDB = _cardGameContext.Player.ToArray();
             return playersDB;
         }
-        
+
         [Route("createPlayer")]
         [HttpPost]
         public void createPlayer([FromBody] createPlayerParameters parameters)
@@ -80,7 +80,7 @@ namespace FinalProjectTesting.Controllers
             newPlayer.mixesMatched = 0;
             _cardGameContext.Player.Add(newPlayer);
             _cardGameContext.SaveChanges();
-            
+
             //copied from assessment6 using mvc? not sure if this is right must review later
         }
 
@@ -89,7 +89,7 @@ namespace FinalProjectTesting.Controllers
         public void deletePlayer([FromBody] createPlayerParameters parameters)
         {
             Player playerToDelete = new Player();
-            foreach(var player in _cardGameContext.Player.ToArray())
+            foreach (var player in _cardGameContext.Player.ToArray())
             {
                 if (player.name == parameters.newPlayerName)
                 {
@@ -99,5 +99,38 @@ namespace FinalProjectTesting.Controllers
                 }
             }
         }
+        [Route("ModifyAPlayer")]
+        [HttpPost]
+        public void modifyPlayers([FromBody] modifyPlayerParameters theNewPlayer)
+        {
+            Player thisPlayer = _cardGameContext.Player.Where(p => p.ID == theNewPlayer.id).FirstOrDefault();
+            if (thisPlayer != null)
+            {
+                if (thisPlayer.name != theNewPlayer.name)
+                {
+                    thisPlayer.name = theNewPlayer.name;
+                    _cardGameContext.Update(thisPlayer);
+                    _cardGameContext.SaveChanges();
+                }
+            }
+        }
+        //[Route("ModifyPlayers")]
+        //[HttpPost]
+        //public void modifyPlayers([FromBody] modifyPlayerParameters listOfPlayers)
+        //{
+        //    List<Player> newPlayers = listOfPlayers.newPlayerNames;
+        //    foreach (var item in _cardGameContext.Player.ToArray())
+        //    {
+        //        if (item.ID == newPlayers.ElementAt<Player>(item.ID).ID)
+        //        {
+        //            if (item.name != newPlayers.ElementAt<Player>(item.ID).name)
+        //            {
+        //                _cardGameContext.Update(item.name, newPlayers.ElementAt<Player>(item.ID).name);
+        //                _cardGameContext.SaveChanges();
+        //            }
+        //        }
+        //    }
+        //}
+
     }
 }
