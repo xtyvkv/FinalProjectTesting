@@ -11,31 +11,13 @@
 <br />
 <br />-->
 <h1>T-R-E-M-E-N-D-O-R Players</h1>
-<table class="table table-striped" width="100">
+<table class="table table-striped" width="100%">
   <thead>
 
   </thead>
   <tbody>
     <tr *ngFor="let player of players">
-      <!--<td>
-    <input type="text" placeholder="player.name.value" #playerName/>
-  </td>-->
-      <td *ngIf="startModify">
-        <p><input type="text" placeholder="{{player.name}}" /></p>
-        <!--<button class="optionButton"--> <!--(click)=""-->
-      </td>
-      <td *ngIf="!startModify">
-        <p>{{player.name}}</p>
-      </td>
-      <td *ngIf="startModify">
-        <p><input type="submit" class="optionButton" (click)="startModification(player.id, player.name)" /></p>
-      </td>
-      <td *ngIf="!startModify">
-        <button class="optionButton" (click)="startModification(player.id, player.name)">Modify Player</button>
-      </td>
-      <td>
-        <button class="optionButton" (click)="deletePlayer(player.name)">Delete Player</button>
-      </td>
+      <app-modify-player [player]="player"></app-modify-player>
     </tr>
   </tbody>
 </table>

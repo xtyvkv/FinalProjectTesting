@@ -1,0 +1,15 @@
+<td *ngIf="startModify">
+  <p><input [formControl]="playerName" type="text" placeholder="{{player.name}}"/></p>
+</td>
+<td *ngIf="!startModify">
+  <p>{{player.name}}</p>
+</td>
+<td *ngIf="startModify">
+  <p><input type="submit" class="optionButton" (click)="startModification()" /></p>
+</td>
+<td *ngIf="!startModify">
+  <button class="optionButton" (click)="startModification()">Modify Player</button>
+</td>
+<td>
+  <button class="optionButton" (click)="deletePlayer(player.name)">Delete Player</button>
+</td>

@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ManagePlayersComponent implements OnInit {
 
-  constructor(private newGameService: GameService, private _ActivatedRoute: ActivatedRoute) { }
+  constructor(private newGameService: GameService, private _ActivatedRoute: ActivatedRoute, private _thisRoute: Router) { }
   public players: Player[] | any = null;
   public newPlayer: Player | any = null;
 
@@ -40,15 +40,17 @@ export class ManagePlayersComponent implements OnInit {
     console.log("name passed");
     window.alert('player name deleted');
   }
-  startModify: boolean = false; // hidden by default
-  startModification(playerID: number, playerName: string) {
-    let thisComponent: ManagePlayersComponent = this;
-    let thisVariable: modifyPlayerParameters = new modifyPlayerParameters(playerID, playerName);
-    this.startModify = !this.startModify;
-    if (this.startModify == false) {
-      thisComponent.newGameService.ModifyPlayers(thisVariable);
-      window.alert('Players have been updated!');
-    }
+  //startModify: boolean = false; // hidden by default
+  //startModification(playerID: number, playerName: string) {
+  //  this.startModify = !this.startModify;
+  //}
+
+  startModify(): void {
+    //await thisComponent.newGameService.createPlayer(playerName);
+    //console.log("name added");
+    //window.alert('Player added');
+    this._thisRoute.navigateByUrl('modifyplayer');
+
   }
 
 }

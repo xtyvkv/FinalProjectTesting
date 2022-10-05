@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -17,6 +17,7 @@ import { CreatePlayerComponent } from './create-player/create-player.component';
 import { HistoryComponent } from './history/history.component';
 import { FinishComponent } from './finish/finish.component';
 import { ManagePlayersComponent } from './manage-players/manage-players.component';
+import { ModifyPlayerComponent } from './modify-player/modify-player.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +34,13 @@ import { ManagePlayersComponent } from './manage-players/manage-players.componen
     HistoryComponent,
     FinishComponent,
     ManagePlayersComponent,
+    ModifyPlayerComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -48,6 +51,7 @@ import { ManagePlayersComponent } from './manage-players/manage-players.componen
       { path: 'history', component: HistoryComponent },
       { path: 'finish', component: FinishComponent },
       { path: 'manageplayers', component: ManagePlayersComponent },
+      { path: 'modifyplayer', component: ModifyPlayerComponent },
     ])
   ],
   providers: [],
