@@ -495,3 +495,22 @@ h2 {
   font-size: 24pt;
   color: #e867ff;
 }
+
+.col-players {
+    width: 33.3%;
+    float: left;
+    padding-top: 5px;
+}
+
+.col-mod {
+    width: 33.3%;
+    float: left;
+    text-align: right;
+}
+
+.row-player {
+    background-color: rgba(0,0,0,0.05);
+    margin-bottom: 4px;
+    padding: 10px 10px 0px 10px;
+    border-radius: 5px;
+}

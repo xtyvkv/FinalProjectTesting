@@ -11,7 +11,13 @@
 <br />
 <br />-->
 <h1>T-R-E-M-E-N-D-O-R Players</h1>
-<table class="table table-striped" width="100%">
+<div class="container">
+  <div class="row row-player" *ngFor="let player of players">
+    <app-modify-player [player]="player"></app-modify-player>
+  </div>
+</div>
+
+<!--<table class="table table-striped" width="100%">
   <thead>
 
   </thead>
@@ -20,7 +26,7 @@
       <app-modify-player [player]="player"></app-modify-player>
     </tr>
   </tbody>
-</table>
+</table>-->
 
 <div class="container">
   <div class="row">

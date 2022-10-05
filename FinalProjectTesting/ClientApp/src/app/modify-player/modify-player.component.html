@@ -1,15 +1,32 @@
-<td *ngIf="startModify">
-  <p><input [formControl]="playerName" type="text" placeholder="{{player.name}}"/></p>
-</td>
-<td *ngIf="!startModify">
+<div class="col col-players" *ngIf="startModify">
+  <p><input [formControl]="playerName" type="text" placeholder="{{player.name}}" /></p>
+</div>
+<div class="col col-players" *ngIf="!startModify">
   <p>{{player.name}}</p>
-</td>
-<td *ngIf="startModify">
+</div>
+<div class="col col-mod" *ngIf="startModify">
   <p><input type="submit" class="optionButton" (click)="startModification()" /></p>
-</td>
-<td *ngIf="!startModify">
+</div>
+<div class="col col-mod" *ngIf="!startModify">
   <button class="optionButton" (click)="startModification()">Modify Player</button>
-</td>
-<td>
-  <button class="optionButton" (click)="deletePlayer(player.name)">Delete Player</button>
-</td>
+</div>
+<div class="col col-mod">
+    <button class="optionButton" (click)="deletePlayer(player.name)">Delete Player</button>
+</div>
+
+
+  <!--<td *ngIf="startModify">
+    <p><input [formControl]="playerName" type="text" placeholder="{{player.name}}"/></p>
+  </td>
+  <td style="width:200px;" *ngIf="!startModify">
+    <p>{{player.name}}</p>
+  </td>
+  <td style="width:200px;" *ngIf="startModify">
+    <p><input type="submit" class="optionButton" (click)="startModification()" /></p>
+  </td>
+  <td style="width:200px;" *ngIf="!startModify">
+    <button class="optionButton" (click)="startModification()">Modify Player</button>
+  </td>
+  <td style="width:200px;">
+    <button class="optionButton" (click)="deletePlayer(player.name)">Delete Player</button>
+  </td>-->
