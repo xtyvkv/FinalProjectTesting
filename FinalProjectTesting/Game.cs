@@ -28,6 +28,14 @@
     {
         public string newPlayerName { get; set; }
     }
+
+    public class modifyPlayerParameters
+    {
+        //public List<Player> newPlayerNames { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+
+    }
     public class GifyResponse
     {
         public GifCard[] data { get; set; }

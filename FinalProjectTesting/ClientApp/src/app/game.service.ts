@@ -17,6 +17,7 @@ export class GameService {
   private readonly getPlayerUrl: string = "/game/getPlayers";
   private readonly createPlayerUrl: string = 'game/createPlayer';
   private readonly deletePlayerUrl: string = 'game/deletePlayer';
+  private readonly modifyPlayersUrl: string = 'game/modifyAPlayer';
   public playDeckOne: GifCard[] | any = null;
   public playDeckTwo: GifCard[] | any = null;
   public playDeckThree: GifCard[] | any = null;
@@ -105,6 +106,12 @@ export class GameService {
     console.log('player deleted');
   }
 
+  public async ModifyPlayers(player: modifyPlayerParameters): Promise<void> {
+    let thisService: GameService = this;
+    await thisService.httpClient.post<modifyPlayerParameters>(thisService.modifyPlayersUrl, player).toPromise();
+    console.log('Player Names Modified!');
+  }
+
   public async startRound(): Promise<Round> {
 
     let localThis: GameService = this;
@@ -182,7 +189,7 @@ export class Game {
   
 }
 export class Player {
-  public ID: number = 0;
+  public id: number = 0;
   public name: string = "";
   public mixesMatched: number = 0;
  /* public hand: GifCard[] = [];*/
@@ -190,6 +197,16 @@ export class Player {
 }
 export class createPlayerParameters {
   public newPlayerName: string = "";
+}
+
+export class modifyPlayerParameters {
+//  public playerList: Player[] = [];
+  public id: number = 0;
+  public name: string = "";
+  constructor(playerID: number, playerName: string) {
+    this.id = playerID;
+    this.name = playerName;
+  }
 }
 export class Round {
   public roundID: number = 0;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService, Game, Round, Player, GifCard, PromptCard } from '../game.service';
+import { GameService, Game, Round, Player, GifCard, PromptCard, modifyPlayerParameters } from '../game.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
@@ -9,11 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./manage-players.component.css']
 })
 export class ManagePlayersComponent implements OnInit {
-  content: string = "";
-  title: string = "";
-  changeCount: number = 0;
 
-  constructor(private newGameService: GameService, private _ActivatedRoute: ActivatedRoute) { }
+  constructor(private newGameService: GameService, private _ActivatedRoute: ActivatedRoute, private _thisRoute: Router) { }
   public players: Player[] | any = null;
   public newPlayer: Player | any = null;
 
@@ -42,6 +39,18 @@ export class ManagePlayersComponent implements OnInit {
     await thisComponent.newGameService.deletePlayer(playerName);
     console.log("name passed");
     window.alert('player name deleted');
+  }
+  //startModify: boolean = false; // hidden by default
+  //startModification(playerID: number, playerName: string) {
+  //  this.startModify = !this.startModify;
+  //}
+
+  startModify(): void {
+    //await thisComponent.newGameService.createPlayer(playerName);
+    //console.log("name added");
+    //window.alert('Player added');
+    this._thisRoute.navigateByUrl('modifyplayer');
+
   }
 
 }
